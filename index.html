@@ -135,7 +135,7 @@
       }
 
       function Test(){ // функция вызывается из Unity (на кнопке + см скрипт в плагинах)
-        joinCommunityReqest();
+        showCommunityWidget();
       }
 
       function joinCommunityReqest(){
@@ -154,6 +154,25 @@
         });
       }
 
+      function showCommunityWidget(){
+        bridge.send('VKWebAppShowCommunityWidgetPreviewBox', {
+        group_id: 166562603,
+        type: 'text',
+        code: 'return {
+          "title": "Цитата",
+          "text": "Текст цитаты"
+        };'})
+        .then((data) => { 
+          if (data.result) {
+            // Экран предпросмотра показан
+          }
+        })
+        .catch((error) => {
+          // Ошибка
+          console.log(error);
+        });
+      }
+      
       function shareAppLinkWithFriends(){
         vkBridge.send('VKWebAppShare', {
         link: 'https://vk.com/vkappsdev' // тут ссылка
