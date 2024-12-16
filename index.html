@@ -129,14 +129,33 @@
     </script>
 
     <script>   // Пользовательский код
-      function FromUnityToJs ()   // функция вызывается из Unity
+      function FromUnityToJs ()   // функция вызывается из Unity (на кнопке + см скрипт в плагинах)
       {
         callMethodPostStory();
       }
 
-      function Test(){
+      function Test(){ // функция вызывается из Unity (на кнопке + см скрипт в плагинах)
+        joinCommunityReqest();
+      }
+
+      function joinCommunityReqest(){
+        vkBridge.send('VKWebAppJoinGroup', {
+        group_id: 166562603 // тут id группы
+        })
+        .then((data) => { 
+          if (data.result) {
+            // Пользователь подписался на сообщество
+          }
+        })
+        .catch((error) => {
+          // Ошибка
+          console.log(error);
+        });
+      }
+
+      function shareAppLinkWithFriends(){
         vkBridge.send('VKWebAppShare', {
-        link: 'https://vk.com/vkappsdev'
+        link: 'https://vk.com/vkappsdev' // тут ссылка
         })
         .then((data) => { 
           if (data.result) {
