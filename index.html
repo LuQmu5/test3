@@ -135,7 +135,7 @@
       }
 
       function Test(){ // функция вызывается из Unity (на кнопке + см скрипт в плагинах)
-        showCommunityWidget();
+        joinCommunityReqest();
       }
 
       function joinCommunityReqest(){
@@ -146,25 +146,6 @@
           if (data.result) {
             // Пользователь подписался на сообщество
             alert("good");
-          }
-        })
-        .catch((error) => {
-          // Ошибка
-          console.log(error);
-        });
-      }
-
-      function showCommunityWidget(){
-        vkBridge.send('VKWebAppShowCommunityWidgetPreviewBox', {
-        group_id: 166562603,
-        type: 'text',
-        code: 'return {
-          "title": "Цитата",
-          "text": "Текст цитаты"
-        };'})
-        .then((data) => { 
-          if (data.result) {
-            // Экран предпросмотра показан
           }
         })
         .catch((error) => {
