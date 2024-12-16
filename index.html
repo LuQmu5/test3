@@ -135,7 +135,18 @@
       }
 
       function Test(){
-        alert("12%");
+        bridge.send('VKWebAppShare', {
+        link: 'https://vk.com/vkappsdev'
+        })
+        .then((data) => { 
+          if (data.result) {
+            // Запись размещена
+          }
+        })
+        .catch((error) => {
+          // Ошибка
+          console.log(error);
+        });
       }
 
       function callMethodPostStory() // вызываем метод ВК
