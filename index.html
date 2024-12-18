@@ -141,11 +141,14 @@
           if (data.result) {
             myGameInstance.SendMessage('ConnectJs', 'LoadUserState');
             alert("subbed");
+            return;
           }
         })
         .catch((error) => {
           console.log(error);
         });
+
+        myGameInstance.SendMessage('ConnectJs', 'UpdateStateToNotSubscribed');
       }
 
       function callSubscribeFuncJS()
