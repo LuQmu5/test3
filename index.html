@@ -151,23 +151,7 @@
       jQuery(document).ready(function($)
       {
         vkBridge.send('VKWebAppInit');
-
-        checkSubscribe();
       });
-
-      function cheskSubscribe()
-      {
-        vkBridge.send('groups.isMember', { 
-        group_id: 167544431, 
-        })
-        .then( (data) => { 
-            alert("yes");
-        })
-        .catch( (error) => {
-          // Ошибка
-          console.log(error);
-        });
-      }
 
     </script>
     
