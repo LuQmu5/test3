@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Tipitopiki Test2.3</title>
+    <title>Unity Web Player | Tipitopiki Test2.4</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -134,8 +134,9 @@
     <script> // user code
       function callFirstPromoMethod ()
       {
-        alert("first promo");
-        myGameInstance.SendMessage('ConnectJs', 'HideAllButtons');
+        var communityId = myGameInstance.SendMessage('ConnectJs', 'GetCommunityID');
+        alert(communityId);
+        // myGameInstance.SendMessage('ConnectJs', 'HideAllButtons');
       }
 
       function callSecondPromoMethod()
