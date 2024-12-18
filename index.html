@@ -137,7 +137,6 @@
       function callFirstPromoFuncJS ()
       {
         alert("12%");
-        // myGameInstance.SendMessage('ConnectJs', 'HideAllButtons');
       }
 
       function callSecondPromoFuncJS()
@@ -168,6 +167,7 @@
           }
           else{
             alert("not good");
+            myGameInstance.SendMessage('ConnectJs', 'UpdateStateToNotSubscribed');
           }
         })
         .catch((error) => {
