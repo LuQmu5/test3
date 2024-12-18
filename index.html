@@ -159,12 +159,7 @@
           console.log(error);
         });
       }
-
-      jQuery(document).ready(function($)
-      {
-        vkBridge.send('VKWebAppInit');
-      });
-
+      
       function callCheckSubscribeFuncJS()
       {
         vkBridge.send('VKWebAppJoinGroup', {
@@ -183,6 +178,10 @@
         });
       }
 
+      jQuery(document).ready(function($)
+      {
+        vkBridge.send('VKWebAppInit');
+      });      
     </script>
     
   </body>
