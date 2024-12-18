@@ -151,7 +151,6 @@
         })
         .then((data) => { 
           if (data.result) {
-            alert("good");
             myGameInstance.SendMessage('ConnectJs', 'LoadUserState');
           }
         })
@@ -172,7 +171,10 @@
         group_id: GROUP_ID
         })
         .then((data) => { 
-          if (!data.result) {
+          if (data.result) {
+            myGameInstance.SendMessage('ConnectJs', 'LoadUserState');
+          }
+          else{
             myGameInstance.SendMessage('ConnectJs', 'UpdateStateToNotSubscribed');
           }
         })
