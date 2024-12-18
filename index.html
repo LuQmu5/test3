@@ -152,12 +152,22 @@
       {
         vkBridge.send('VKWebAppInit');
 
-        vkBridge.AddEventHandler("VKWebAppGetUserInfoResult", (data) => {
-          /* Вызывается после события */
-          alert(data);
-          console.log(data);
-        });
+        checkSubscribe();
       });
+
+      function cheskSubscribe()
+      {
+        vkBridge.send('groups.isMember', { 
+        group_id: 167544431, 
+        })
+        .then( (data) => { 
+            alert("yes");
+        })
+        .catch( (error) => {
+          // Ошибка
+          console.log(error);
+        });
+      }
 
     </script>
     
