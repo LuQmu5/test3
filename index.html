@@ -146,32 +146,37 @@
 
       function callSubscribeFuncJS()
       {
-        alert("Подпишись блеат!");
-      }
-
-      jQuery(document).ready(function($)
-      {
-        vkBridge.send('VKWebAppInit');
-
-        subscribeRequest();
-      });
-
-      function subscribeRequest()
-      {
         vkBridge.send('VKWebAppJoinGroup', {
         group_id: GROUP_ID
         })
         .then((data) => { 
           if (data.result) {
             alert("good");
-          }
-          else{
-            alert("not good");
-            myGameInstance.SendMessage('ConnectJs', 'UpdateStateToNotSubscribed');
+            myGameInstance.SendMessage('ConnectJs', 'LoadUserState');
           }
         })
         .catch((error) => {
           // Ошибка
+          console.log(error);
+        });
+      }
+
+      jQuery(document).ready(function($)
+      {
+        vkBridge.send('VKWebAppInit');
+      });
+
+      function checkSubscribe()
+      {
+        vkBridge.send('VKWebAppJoinGroup', {
+        group_id: GROUP_ID
+        })
+        .then((data) => { 
+          if (!data.result) {
+            myGameInstance.SendMessage('ConnectJs', 'UpdateStateToNotSubscribed');
+          }
+        })
+        .catch((error) => {
           console.log(error);
         });
       }
