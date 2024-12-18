@@ -110,10 +110,13 @@
 
       var script = document.createElement("script");
       script.src = loaderUrl;
+      var myGameInstance = null;
+      
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
               }).then((unityInstance) => {
+                myGameInstance = unityInstance;
                 document.querySelector("#unity-loading-bar").style.display = "none";
                 document.querySelector("#unity-fullscreen-button").onclick = () => {
                   unityInstance.SetFullscreen(1);
@@ -128,16 +131,20 @@
 
     </script>
 
-    <script>   // Пользовательский код
-      function FromUnityToJs ()   // функция вызывается из Unity (на кнопке + см скрипт в плагинах)
+    <script> 
+      function callFirstPromoMethod ()
       {
-        callMethodPostStory();
+        alert("first promo");
+        myGameInstance.SendMessage('ConnectJs', 'HideAllButtons');
       }
 
-      function Test(){ // функция вызывается из Unity (на кнопке + см скрипт в плагинах)
-        joinCommunityReqest();
+      function callSecondPromoMethod()
+      {
+        alert("second promo");
       }
 
+
+      // vk methods
       function joinCommunityReqest(){
         vkBridge.send('VKWebAppJoinGroup', {
         group_id: 166562603 // тут id группы
