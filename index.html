@@ -151,7 +151,16 @@
       jQuery(document).ready(function($)
       {
         vkBridge.send('VKWebAppInit');
+
+        alert(getUserID());
       });
+
+      function getUserID()
+      {
+        var info = vkBridge.send("VKWebAppGetUserInfo");
+        
+        return info.id;
+      }
     </script>
     
   </body>
