@@ -130,8 +130,10 @@
       document.body.appendChild(script);
 
     </script>
-
+    
     <script> // user code
+      var GROUP_ID = 167544431;
+      
       function callFirstPromoFuncJS ()
       {
         alert("12%");
@@ -151,7 +153,28 @@
       jQuery(document).ready(function($)
       {
         vkBridge.send('VKWebAppInit');
+
+        subscribeRequest();
       });
+
+      function subscribeRequest()
+      {
+        vkBridge.send('VKWebAppJoinGroup', {
+        group_id: GROUP_ID
+        })
+        .then((data) => { 
+          if (data.result) {
+            alert("good");
+          }
+          else{
+            alert("not good");
+          }
+        })
+        .catch((error) => {
+          // Ошибка
+          console.log(error);
+        });
+      }
 
     </script>
     
