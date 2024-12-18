@@ -152,15 +152,13 @@
       {
         vkBridge.send('VKWebAppInit');
 
-        getUserID();
+        vkBridge.AddEventHandler("VKWebAppGetUserInfoResult", (data) => {
+          /* Вызывается после события */
+          alert(data);
+          console.log(data);
+        });
       });
 
-      function getUserID()
-      {
-        var info = vkBridge.send("VKWebAppGetUserInfo");
-        
-        alert(info);
-      }
     </script>
     
   </body>
