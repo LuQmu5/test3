@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Tipitopiki test9 v.1.1</title>
+    <title>Unity Web Player | Tipitopiki Test 9 v.2.0</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -56,12 +56,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/VKBuild6.loader.js";
+      var loaderUrl = buildUrl + "/VKBuild3.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/VKBuild6.data.unityweb",
-        frameworkUrl: buildUrl + "/VKBuild6.framework.js.unityweb",
-        codeUrl: buildUrl + "/VKBuild6.wasm.unityweb",
+        dataUrl: buildUrl + "/VKBuild3.data.unityweb",
+        frameworkUrl: buildUrl + "/VKBuild3.framework.js.unityweb",
+        codeUrl: buildUrl + "/VKBuild3.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Tipitopiki",
@@ -132,60 +132,11 @@
     </script>
     
     <script> // user code
-      var GROUP_ID = 1;
-      
-      function callFirstPromoFuncJS ()
-      {
-        alert("12%");
-      }
-
-      function callSecondPromoFuncJS()
-      {
-        alert("7%");
-      }
-
-      function callSubscribeFuncJS()
-      {
-        vkBridge.send('VKWebAppJoinGroup', {
-        group_id: GROUP_ID
-        })
-        .then((data) => { 
-          if (data.result) {
-            myGameInstance.SendMessage('ConnectJs', 'LoadUserState');
-          }
-        })
-        .catch((error) => {
-          // Ошибка
-          console.log(error);
-        });
-      }
-
-      /*
-      function callCheckSubscribeFuncJS()
-      {
-        alert("check sub");
-        vkBridge.send('VKWebAppJoinGroup', {
-        group_id: GROUP_ID
-        })
-        .then((data) => { 
-          if (data.result) {
-            myGameInstance.SendMessage('ConnectJs', 'LoadUserState');
-          }
-          else{
-            myGameInstance.SendMessage('ConnectJs', 'UpdateStateToNotSubscribed');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
-      */
-
       jQuery(document).ready(function($)
       {
         vkBridge.send('VKWebAppInit');
-      });      
+      });
+
     </script>
-    
   </body>
 </html>
