@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Tipitopiki Final v.3.7</title>
+    <title>Unity Web Player | Tipitopiki Final v.3.8</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -187,16 +187,18 @@
           }
         
           switch(event.detail.type) {
-            case 'VKWebAppShare':
+            case 'VKWebAppShareResult':
               if (event.detail.data.result) {
                 // Обработка события в случае успеха
-                alert("error");
+                alert(event.detail.data.result);
+                alert(event);
+                alert(event.detail.data);
                 console.log(event.detail.data.result);
               } else {
                 alert("else error");
               }
               break;
-            case 'VKWebAppShare':
+            case 'VKWebAppShareResult':
               alert("error");
               console.log(event.detail.data.error_type, event.detail.data.error_data);      
               break;
