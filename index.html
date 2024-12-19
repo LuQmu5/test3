@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Tipitopiki Final v.3.92</title>
+    <title>Unity Web Player | Tipitopiki Final v.4</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -174,9 +174,6 @@
         .then((data) => { 
           if (data.result) {
             console.log(data);
-            console.log(data.result[0]);
-            console.log(data.result[0].users);
-            console.log(data.result[0].users.length);
           }
         })
         .catch((error) => {
@@ -184,7 +181,7 @@
         });
       }
 
-      function subToEvent(){
+      function subToAppShareEvent(){
         // Подписывается на события, отправленные нативным клиентом
         vkBridge.subscribe(event => {
           if (!event.detail) {
@@ -195,17 +192,14 @@
             case 'VKWebAppShareResult':
               if (event.detail.data.result) {
                 // Обработка события в случае успеха
-                alert("good");
-                console.log(event.detail.data.result);
-                console.log(event.detail.data.result[0]);
-                console.log(event.detail.data.result[0].users);
+                alert("invited users: " + event.detail.data.result[0].users.length);
                 console.log(event.detail.data.result[0].users.length);
               } else {
                 alert("else error");
               }
               break;
             case 'VKWebAppShareResult':
-              alert("error");
+              alert("catch error");
               console.log(event.detail.data.error_type, event.detail.data.error_data);      
               break;
           }
@@ -222,7 +216,7 @@
       {
         vkBridge.send('VKWebAppInit');
 
-        subToEvent();
+        subToAppShareEvent();
       }); 
     </script>
   </body>
