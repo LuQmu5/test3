@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Tipitopiki Final v.3.3</title>
+    <title>Unity Web Player | Tipitopiki Final v.3.4</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -167,18 +167,24 @@
       
       function callFirstPromoFuncJS ()
       {
+        var info = null;
+        
         vkBridge.send('VKWebAppShare', {
         link: 'https://vk.com/vkappsdev',
         text: 'вступи пжл ТЕСТ'
         })
         .then((data) => { 
           if (data.result) {
+            info = data;
             console.log(data);
           }
         })
         .catch((error) => {
           console.log(error);
         });
+
+        console.log(info);
+        alert(info);
       }
 
       function callSecondPromoFuncJS ()
