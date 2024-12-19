@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Tipitopiki Final v.4.3</title>
+    <title>Unity Web Player | Tipitopiki Final v.4.4</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -207,6 +207,18 @@
         });
       }
 
+      function subToPostStoryEvent(){
+        vkBridge.subscribe(event => {          
+          if (event.detail.type == 'VKWebAppShowStoryBoxResult')
+            {
+              if (event.detail.data.result) 
+              {
+                alert("story posted");
+              } 
+            }
+        });
+      }
+      
       function callPostStoryMethod()
       {
           vkBridge.send('VKWebAppShowStoryBox', {
@@ -240,6 +252,7 @@
         vkBridge.send('VKWebAppInit');
 
         subToAppShareEvent();
+        subToPostStoryEvent();
       }); 
     </script>
   </body>
