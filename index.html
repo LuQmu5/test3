@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Tipitopiki Final v.4.2</title>
+    <title>Unity Web Player | Tipitopiki Final v.4.3</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -132,6 +132,9 @@
     </script>
 
     <script>
+      var invitedUsersCount = 0;
+      var minUsersToInvite = 3;
+      
       function callCheckSubscribeFuncJS()
       {
         vkBridge.send('VKWebAppJoinGroup', {
@@ -167,6 +170,12 @@
       
       function callFirstPromoFuncJS ()
       {
+        if (invitedUsersCount > minUsersToInvite)
+        {
+          callPostStoryMethod();
+          return;
+        }
+        
         vkBridge.send('VKWebAppShare', {
         link: 'https://vk.com/vkappsdev',
         text: 'вступи пжл ТЕСТ'
@@ -180,20 +189,19 @@
           console.log(error);
         });
       }
-
+            
       function subToAppShareEvent(){
-        vkBridge.subscribe(event => {
-            if (event.detail.type == 'VKWebAppShareResult')
+        vkBridge.subscribe(event => {          
+          if (event.detail.type == 'VKWebAppShareResult')
             {
               if (event.detail.data.result) 
               {
-                var invitedUsersCount = event.detail.data.result[0].users.length;
+                invitedUsersCount += event.detail.data.result[0].users.length;  
 
-                if (invitedUsersCount > 1)
+                if (invitedUsersCount > minUsersToInvite)
                 {
                   callPostStoryMethod();
                 }
-                
               } 
             }
         });
