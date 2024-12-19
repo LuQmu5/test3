@@ -182,27 +182,15 @@
       }
 
       function subToAppShareEvent(){
-        // Подписывается на события, отправленные нативным клиентом
         vkBridge.subscribe(event => {
-          if (!event.detail) {
-            return;
-          }
-        
-          switch(event.detail.type) {
-            case 'VKWebAppShareResult':
-              if (event.detail.data.result) {
-                // Обработка события в случае успеха
+            if (event.detail.type == 'VKWebAppShareResult')
+            {
+              if (event.detail.data.result) 
+              {
                 alert("invited users: " + event.detail.data.result[0].users.length);
                 console.log(event.detail.data.result[0].users.length);
-              } else {
-                alert("else error");
-              }
-              break;
-            case 'VKWebAppShareResult':
-              alert("catch error");
-              console.log(event.detail.data.error_type, event.detail.data.error_data);      
-              break;
-          }
+              } 
+            }
         });
       }
 
