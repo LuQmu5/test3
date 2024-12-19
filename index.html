@@ -164,12 +164,10 @@
           console.log(error);
         });
       }
-
-      var info = null;
       
       function callFirstPromoFuncJS ()
       {
-        info = vkBridge.send('VKWebAppShare', {
+        vkBridge.send('VKWebAppShare', {
         link: 'https://vk.com/vkappsdev',
         text: 'вступи пжл ТЕСТ'
         })
@@ -181,9 +179,30 @@
         .catch((error) => {
           console.log(error);
         });
-
-        alert(info);
-        alert(info.length);
+        // sub
+        // Подписывается на события, отправленные нативным клиентом
+        vkBridge.subscribe(event => {
+          if (!event.detail) {
+            return;
+          }
+        
+          switch(event.detail.type) {
+            case 'VKWebAppShare':
+              if (event.detail.data.result) {
+                // Обработка события в случае успеха
+                alert("error");
+                console.log(event.detail.data.result);
+              } else {
+                alert("else error");
+              }
+              break;
+            case 'VKWebAppShare':
+              alert("error");
+              console.log(event.detail.data.error_type, event.detail.data.error_data);      
+              break;
+          }
+        });
+        // sub
       }
 
       function callSecondPromoFuncJS ()
