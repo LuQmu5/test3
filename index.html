@@ -167,7 +167,19 @@
       
       function callFirstPromoFuncJS ()
       {
-        alert("12%");
+        bridge.send('VKWebAppShare', {
+        link: 'https://vk.com/vkappsdev',
+        text: 'вступи пжл ТЕСТ'
+        })
+        .then((data) => { 
+          if (data.result) {
+            console.log(data.result);
+            alert("good");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       }
 
       function callSecondPromoFuncJS ()
