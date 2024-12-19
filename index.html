@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Tipitopiki Final v.1.0</title>
+    <title>Unity Web Player | Tipitopiki Final v.2.0</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -134,12 +134,35 @@
     <script>
       function callCheckSubscribeFuncJS()
       {
-        alert("check sub");
+        vkBridge.send('VKWebAppJoinGroup', {
+        group_id: 1
+        })
+        .then((data) => { 
+          if (data.result) {
+            myGameInstance.SendMessage('ConnectJs', 'LoadUserState');
+            return;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+        myGameInstance.SendMessage('ConnectJs', 'UpdateStateToNotSubscribed');
       }
       
       function callSubscribeFuncJS()
       {
-        alert("sub");
+        vkBridge.send('VKWebAppJoinGroup', {
+        group_id: 1
+        })
+        .then((data) => { 
+          if (data.result) {
+            myGameInstance.SendMessage('ConnectJs', 'LoadUserState');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       }
       
       function callFirstPromoFuncJS ()
